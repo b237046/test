@@ -82,8 +82,16 @@ public class Book implements Contract {
     }
     
     
-    public void returndate(){
-        
+    public boolean doesIdExist(int x){
+        return x == this.id;
+    }
+    
+    public boolean doesTitleExist(String x){
+        return x.equals(this.title);
+    }
+    
+    public boolean doesAutherExist(String x){
+        return x.equals(this.a.getName());
     }
     
     

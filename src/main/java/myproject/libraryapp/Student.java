@@ -45,7 +45,7 @@ public class Student extends Auther{
     
     
     public void barrow(Book b){
-        if (barrowCount < 3 && !b.inLoan()){
+        if (barrowCount < 2 && !b.inLoan()){
             LocalDate date = LocalDate.now();
             
             System.out.print("you should return the book in ");
