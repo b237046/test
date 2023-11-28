@@ -12,5 +12,4 @@ public interface Contract {
     
     public abstract String getInfo();
     public abstract boolean inLoan();
-    
 }

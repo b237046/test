@@ -8,8 +8,6 @@ package myproject.libraryapp;
  *
  * @author hehe he
  */
-
-import java.time.LocalDate;
 public class BirthDate {
     
     private int day;
@@ -75,18 +73,8 @@ public class BirthDate {
     }
     
     
-    public int diffage(){
-        LocalDate date = LocalDate.now();
-        int currentDay  = date.getDayOfMonth();
-        int currentMonth  = date.getMonthValue();
-        int currentYear  = date.getYear();
-        
-        int passedDays = (currentYear * 365 + currentMonth * 30 + currentDay) - (this.year * 365 + this.month * 30 + this.day);
-        return passedDays;
-        
-    }
     
-   
+    
     public String getInfo(){
         return  this.day + "/" + this.month + "/" + this.year;
     }

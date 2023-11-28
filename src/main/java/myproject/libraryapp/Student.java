@@ -8,8 +8,8 @@ package myproject.libraryapp;
  *
  * @author hehe he
  */
-
-public class Student extends Person{
+import java.time.LocalDate;
+public class Student extends Auther{
     
     private String major;
     private int barrowCount;
@@ -46,9 +46,15 @@ public class Student extends Person{
     
     public void barrow(Book b){
         if (barrowCount < 3 && !b.inLoan()){
+            LocalDate date = LocalDate.now();
+            
+            System.out.print("you should return the book in ");
+            System.out.println( date.plusDays(5));
+            
             b.setIsLoan(true);
             barrowCount++;
         }
+        else System.out.println("you can not barrow more than 3 books");
     }
     
     

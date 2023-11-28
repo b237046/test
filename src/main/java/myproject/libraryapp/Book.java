@@ -82,6 +82,14 @@ public class Book implements Contract {
     }
     
     
+    public void returndate(){
+        
+    }
+    
+    
+    
+    
+    
     @Override
     public boolean inLoan(){
         return isLoan;

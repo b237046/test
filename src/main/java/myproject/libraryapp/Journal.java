@@ -36,11 +36,11 @@ public class Journal extends Book implements Contract {
     }
     
     
+    
     @Override
      public boolean inLoan(){
         return super.inLoan();
     }
-    
     
     @Override
     public String getInfo(){
