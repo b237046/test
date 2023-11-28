@@ -9,42 +9,46 @@ package myproject.libraryapp;
  * @author hehe he
  */
 import java.util.ArrayList;
+import java.util.Scanner;
 public class LibraryApp {
     
-     private static void searchBookByName(ArrayList<Book> books, String name) {
+     private static Book searchBookByName(ArrayList<Book> books, String name) {
         for (Book book : books) {
             if (book.getTitle().equals(name)) {
-                System.out.println("The Book is available.");
-                return;
+                return book;
             }
         }
-        System.out.println("The Book is not available.");}
+        return null;}
      
-     private static void searchBookByAutherName(ArrayList<Book> books, String auther) {
+     private static Book searchBookByAutherName(ArrayList<Book> books, String auther) {
         for (Book book : books) {
             if (book.geta().getName().equals(auther)) {
-                System.out.println("The Book is available.");
-                return;
+                return book;
             }
         }
-        System.out.println("The Book is not available.");}
-     
-     private static void searchBookById(ArrayList<Book> books, int id) {
+        return null;}
+        
+     private static Book searchBookById(ArrayList<Book> books, int id) {
         for (Book book : books) {
             if (book.getId() == id) {
-                System.out.println("The Book is available.");
-                return;
+                return book;
             }
         }
-        System.out.println("The Book is not available.");}
+        return null;}
      
+     private static Student searchStudentByName(ArrayList<Student> students, String name) {
+        for (Student student : students) {
+            if (student.getName().equals(name)) {
+                return student;
+            }
+        }
+        return null;}
      
      
     public static void main(String[] args) {
         
-        
         ArrayList<Book> books = new ArrayList<Book>();
-        books.add(new Book("how to code",10,"learning","first edition",new BirthDate(3,4,2000),new Auther(1,"Ali","jordan",new BirthDate(1,1,1950))));
+        books.add(new Book("howtocode",10,"learning","first edition",new BirthDate(3,4,2000),new Auther(1,"Ali","jordan",new BirthDate(1,1,1950))));
         books.add(new Book("sandrella",11,"fiction","second edition",new BirthDate(5,10,1988),new Auther(2,"jakson","england",new BirthDate(3,10,1940))));
         books.add(new Book("calculus",12, "scientific","fifth edition",new BirthDate(20,10,1972),new Auther(3,"Ahmad","florida",new BirthDate(5,5,1930))));
         books.add(new Book("snow white",13,"fiction","first edition",new BirthDate(1,1,1930),new Auther(4,"hamza","hebron",new BirthDate(10,10,1900))));
@@ -55,26 +59,71 @@ public class LibraryApp {
         students.add(new Student(1000,"mohammad","amman",new BirthDate(5,2,1999),"cs"));
         students.add(new Student(1001,"hani","hebron",new BirthDate(3,3,2001),"physics"));
         students.add(new Student(1002,"Abed","hebron",new BirthDate(10,10,2005),"business"));
+         OUTER:
+         while (true) {
+             System.out.println("1-Add Books to the Library");
+             System.out.println("2-Add Students to the Library");
+             System.out.println("3-Search for a book by its name");
+             System.out.println("4-Search for a book by its id");
+             System.out.println("5-Search for a book by its auther name");
+             System.out.println("6-Check The Books Loan");
+             System.out.println("7-Student want to barrow a Book");
+             System.out.println("8-Exit");
+             System.out.print("Enter choice : ");
+             int choice;
+             Scanner input = new Scanner(System.in);
+             choice = input.nextInt();
+             
+             
+             switch (choice) {
+                 case 1 -> {
+                     System.out.println("\nEnter Book name, id, genre, version, Date (dd,mm,yyyy) AND auther id, name, address, Birth_date (dd,mm,yyyy)");
+                     books.add(new Book(input.next(),input.nextInt(),input.next(),input.next(),new BirthDate(input.nextInt(),input.nextInt(),input.nextInt()),
+                             new Auther(input.nextInt(),input.next(),input.next(),new BirthDate(input.nextInt(),input.nextInt(),input.nextInt()))));
+                     System.out.println("The Book added successfully\n\n");
+                }
+                 case 2 -> {
+                     System.out.println("\nEnter Studen id, name, address, Birth_date (dd,mm,yyyy), major");
+                     students.add(new Student(input.nextInt(),input.next(),input.next(),new BirthDate(input.nextInt(),input.nextInt(),input.nextInt()),input.next()));
+                     System.out.println("The Student added successfully\n\n");
+                 }
+                 case 3 -> {
+                     System.out.print("Enter Book name : ");
+                     if (searchBookByName(books,input.next()) != null)
+                         System.out.println("The Book is Available\n\n");
+                     else System.out.println("The Book is NOT Available\n\n");
+                }
+                 case 4 -> {
+                     System.out.print("Enter Book id : ");
+                     if (searchBookById(books,input.nextInt()) != null)
+                         System.out.println("The Book is Available\n\n");
+                     else System.out.println("The Book is NOT Available\n\n");
+                }
+                 case 5 -> {
+                     System.out.print("Enter Book's Auther name : ");
+                     if (searchBookByAutherName(books,input.next()) != null )
+                         System.out.println("The Book is Available\n\n");
+                     else System.out.println("The Book is NOT Available\n\n");
+                }
+                 case 6 -> {
+                     System.out.print("Enter Book name you want to check : ");
+                     System.out.println("Is the book in loan? " + searchBookByName(books,input.next()).inLoan() + "\n\n");
+                }
+                 case 7 ->{
+                     System.out.print("Enter Student name AND the Book to barrow : ");
+                     searchStudentByName(students,input.next()).barrow(searchBookByName(books,input.next()));
+                 }
+                 case 8 ->{
+                     break OUTER;
+                 }
+                 default -> System.out.println("Invalid choice try again\n\n");
+             }
+         }
         
         
-        searchBookByName(books,"how to code");
-        searchBookByAutherName(books,"Ahmad");
-        searchBookById(books,3);
-        
-        
-        
-//        students [0].barrow(book());
-//        students [0].barrow(books[1]);
-//        students [0].barrow(books[2]);
-//        
-//        System.out.println(books[0].inLoan());
-//        System.out.println(books[2].inLoan());
-//        
-//        
-//        
-//        int x = 10;
-//        System.out.println(books [0].doesIdExist(x));
-//        System.out.println(books[1].doesTitleExist("sandrella"));
-    
+         
+         
+         
+         
     }
 }

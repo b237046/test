@@ -45,16 +45,16 @@ public class Student extends Auther{
     
     
     public void barrow(Book b){
-        if (barrowCount < 2 && !b.inLoan()){
+        if (barrowCount < 3 && !b.inLoan()){
             LocalDate date = LocalDate.now();
             
-            System.out.print("you should return the book in ");
-            System.out.println( date.plusDays(5));
+            System.out.print("you should return the book in " + date.plusDays(5) + "\n\n");
             
             b.setIsLoan(true);
             barrowCount++;
         }
-        else System.out.println("you can not barrow more than 3 books");
+        else if (barrowCount >= 3) System.out.println("you can not barrow more than 3 books\n\n");
+        else if (b.inLoan()) System.out.println("you can not barrow a book that has already been barrowed\n\n");
     }
     
     
