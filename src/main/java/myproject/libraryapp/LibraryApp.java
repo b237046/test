@@ -114,7 +114,7 @@ public class LibraryApp {
                      searchStudentByName(students,input.next()).barrow(searchBookByName(books,input.next()));
                  }
                  case 8 ->{
-                     break OUTER;
+                     System.exit(0);
                  }
                  default -> System.out.println("Invalid choice try again\n\n");
              }
