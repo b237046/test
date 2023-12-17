@@ -4,12 +4,14 @@
  */
 package myproject.libraryapp;
 
+import java.io.*;
+
 /**
  *
  * @author hehe he
  */
 
-public class Book implements Contract {
+public class Book implements Contract, Serializable {
     
     private String title;
     private int id;

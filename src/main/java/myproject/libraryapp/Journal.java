@@ -4,11 +4,13 @@
  */
 package myproject.libraryapp;
 
+import java.io.Serializable;
+
 /**
  *
  * @author hehe he
  */
-public class Journal extends Book implements Contract {
+public class Journal extends Book implements Contract, Serializable{
     
     private String conferenceName;
     private int conferenceNo;

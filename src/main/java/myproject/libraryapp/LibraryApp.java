@@ -64,9 +64,9 @@ public class LibraryApp {
              System.out.println("1-Add Books to the Library");
              System.out.println("2-Add Students to the Library");
              System.out.println("3-Search for a book by its name");
-             System.out.println("4-Search for a book by its id");
+             System.out.println( "4-Search for a book by its id");
              System.out.println("5-Search for a book by its auther name");
-             System.out.println("6-Check The Books Loan");
+             System.out.println("6-Check The Book's Loan");
              System.out.println("7-Student want to barrow a Book");
              System.out.println("8-Exit");
              System.out.print("Enter choice : ");

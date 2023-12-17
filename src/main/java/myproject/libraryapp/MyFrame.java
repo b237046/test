@@ -5,6 +5,8 @@
 package myproject.libraryapp;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import java.io.*;
 
 /**
  *
@@ -13,13 +15,36 @@ import java.util.ArrayList;
 public class MyFrame extends javax.swing.JFrame {
     ArrayList <Book> book = new ArrayList<Book>();
     ArrayList <Student> student = new ArrayList<Student>();
+    
+    
+//    private ArrayList<Book> loadListFromFile() {
+//        ObjectInputStream ois = null;
+//        try {
+//            
+//            ois = new ObjectInputStream(new FileInputStream("book123.txt"));
+//            ArrayList<Book> loadedbooks = (ArrayList<Book>) ois.readObject();
+//            ArrayList<Book> booooks = new ArrayList<Book>();
+//            booooks.addAll(loadedbooks);
+//            JOptionPane.showMessageDialog(this,"Objects loaded from file successfully");
+//            return booooks;
+//            
+//        } catch (IOException | ClassNotFoundException e) {
+//            
+//            JOptionPane.showMessageDialog(this, "Whattttt " + e.getMessage());
+//            return null;
+//        }
+//        
+//    }
+    
+    
+    
     /**
      * Creates new form MyFrame
      */
     public MyFrame() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,6 +100,32 @@ public class MyFrame extends javax.swing.JFrame {
         studentAddressTextField = new javax.swing.JTextField();
         studentIdTextField = new javax.swing.JTextField();
         studentNameTextField = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        issueNoTextField = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        magazineDayTextField = new javax.swing.JTextField();
+        magazineMonthTextField = new javax.swing.JTextField();
+        magazineYearTextField = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jButton8 = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel30 = new javax.swing.JLabel();
+        conferenceNameTextField = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        conferenceNumberTextField = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registration System");
@@ -145,6 +196,91 @@ public class MyFrame extends javax.swing.JFrame {
 
         jLabel23.setText("Major");
 
+        jButton3.setText("Search for a book by its Name (title)");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Search for a book by its Id");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Search for a book by its Auther's Name");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Check if the book in loan");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("A Student want to barrow a Book");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setText("to add magazine enter the book section and enter the following section then click on \"Add a Magazine\"");
+
+        issueNoTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                issueNoTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setText("issue number");
+
+        jLabel26.setText("release Date:");
+
+        jLabel27.setText("Day");
+
+        jLabel28.setText("Month");
+
+        jLabel29.setText("Year");
+
+        jButton8.setText("Add a Magazine");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jLabel30.setText("to add journal enter the book section and enter the following section then click on \"Add a Journal\"");
+
+        conferenceNameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                conferenceNameTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel31.setText("conference name");
+
+        conferenceNumberTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                conferenceNumberTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel32.setText("conference number");
+
+        jButton9.setText("Add a Journal");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -188,15 +324,16 @@ public class MyFrame extends javax.swing.JFrame {
                                     .addComponent(jLabel6))
                                 .addGap(29, 29, 29)
                                 .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(autherAddressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(31, 31, 31)
-                                        .addComponent(jLabel9))
+                                        .addComponent(jLabel9)
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel13)
@@ -209,7 +346,7 @@ public class MyFrame extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel15)
                                             .addComponent(autherYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(49, 49, 49))))
                             .addGroup(layout.createSequentialGroup()
@@ -228,6 +365,7 @@ public class MyFrame extends javax.swing.JFrame {
                                         .addComponent(jLabel4))
                                     .addComponent(bookVersionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(247, 247, 247))))
+                    .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(studentNameTextField)
@@ -267,7 +405,75 @@ public class MyFrame extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButton2)
                                         .addGap(45, 45, 45))))))
-                    .addComponent(jSeparator1)))
+                    .addComponent(jSeparator2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator3)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator5)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jSeparator6)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel25)
+                            .addComponent(issueNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel26))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(magazineDayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel28)
+                                    .addComponent(magazineMonthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel29)
+                                    .addComponent(magazineYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36)
+                                .addComponent(jButton8))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel24)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(conferenceNameTextField))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(conferenceNumberTextField))
+                .addGap(117, 117, 117)
+                .addComponent(jButton9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,9 +514,9 @@ public class MyFrame extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(autherNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,42 +531,99 @@ public class MyFrame extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(autherDayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(autherMonthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(autherYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel16)
-                                .addComponent(jLabel17)
-                                .addComponent(jLabel18))
-                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel19)
-                                .addComponent(jLabel20)
-                                .addComponent(jLabel21))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(studentNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(studentIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(studentAddressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(autherYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel30)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(conferenceNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(conferenceNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(27, 27, 27)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel24)
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(studentDayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentMonthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel23)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel26))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(studentMajorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(315, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(1, 1, 1))
+                            .addComponent(issueNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel27)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel29))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(magazineDayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(magazineMonthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(magazineYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(22, 22, 22)
+                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel16)
+                                        .addComponent(jLabel17)
+                                        .addComponent(jLabel18))
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel19)
+                                        .addComponent(jLabel20)
+                                        .addComponent(jLabel21))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(studentNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(studentIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(studentAddressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(studentDayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(studentMonthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(studentYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(studentMajorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(53, 53, 53)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton7)
+                        .addGap(57, 57, 57))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(717, 717, 717))))
         );
 
         pack();
@@ -393,50 +656,312 @@ public class MyFrame extends javax.swing.JFrame {
         studentMonthTextField.setText("");
         studentYearTextField.setText("");
         studentMajorTextField.setText("");
+        
+        conferenceNameTextField.setText("");
+        conferenceNumberTextField.setText("");
+        
+        issueNoTextField.setText("");
+        magazineDayTextField.setText("");
+        magazineMonthTextField.setText("");
+        magazineYearTextField.setText("");
+        
+        
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
-        String sName = studentNameTextField.getText();
-        int sId = Integer.parseInt(studentIdTextField.getText());
-        String sAddress = studentAddressTextField.getText();
-        int sDay = Integer.parseInt(studentDayTextField.getText());
-        int sMonth = Integer.parseInt(studentMonthTextField.getText());
-        int sYear = Integer.parseInt(studentYearTextField.getText());
-        String sMajor = studentMajorTextField.getText();
-        
-        student.add (new Student(sId,sName,sAddress,new BirthDate(sDay, sMonth, sYear),sMajor));
-        
-        
-        setAllTextField();
-        
-   
+        try {
+            String sName = studentNameTextField.getText();
+            int sId = Integer.parseInt(studentIdTextField.getText());
+            String sAddress = studentAddressTextField.getText();
+            int sDay = Integer.parseInt(studentDayTextField.getText());
+            int sMonth = Integer.parseInt(studentMonthTextField.getText());
+            int sYear = Integer.parseInt(studentYearTextField.getText());
+            String sMajor = studentMajorTextField.getText();
+
+            Student ss = new Student(sId, sName, sAddress, new BirthDate(sDay, sMonth, sYear), sMajor);
+            student.add(ss);
+
+            setAllTextField();
+
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("student1234.txt", true))) {
+                oos.writeObject(ss);
+                oos.close();
+                JOptionPane.showMessageDialog(this, "Student saved successfully.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        String bName = bookNameTextField.getText();
-        int bId = Integer.parseInt(bookIdTextField.getText());
-        String bGenre = bookGenreTextField.getText();
-        String bVersion = bookVersionTextField.getText();
-        int bDay = Integer.parseInt(bookDayTextField.getText());
-        int bMonth = Integer.parseInt(bookMonthTextField.getText());
-        int bYear = Integer.parseInt(bookYearTextField.getText());
-        
-        String aName = autherNameTextField.getText();
-        int aId = Integer.parseInt(autherIdTextField.getText());
-        String aAddress = autherAddressTextField.getText();
-        int aDay = Integer.parseInt(autherDayTextField.getText());
-        int aMonth = Integer.parseInt(autherMonthTextField.getText());
-        int aYear = Integer.parseInt(autherYearTextField.getText());
+//        // TODO add your handling code here:
         
         
-        book.add(new Book(bName,bId,bGenre,bVersion,new BirthDate(bDay, bMonth, bYear),new Auther(aId,aName,aAddress,new BirthDate(aDay, aMonth, aYear))));
+        try {
+            String bName = bookNameTextField.getText();
+            int bId = Integer.parseInt(bookIdTextField.getText());
+            String bGenre = bookGenreTextField.getText();
+            String bVersion = bookVersionTextField.getText();
+            int bDay = Integer.parseInt(bookDayTextField.getText());
+            int bMonth = Integer.parseInt(bookMonthTextField.getText());
+            int bYear = Integer.parseInt(bookYearTextField.getText());
+
+            String aName = autherNameTextField.getText();
+            int aId = Integer.parseInt(autherIdTextField.getText());
+            String aAddress = autherAddressTextField.getText();
+            int aDay = Integer.parseInt(autherDayTextField.getText());
+            int aMonth = Integer.parseInt(autherMonthTextField.getText());
+            int aYear = Integer.parseInt(autherYearTextField.getText());
+            
+            Book bb = new Book(bName, bId, bGenre, bVersion, new BirthDate(bDay, bMonth, bYear), new Auther(aId, aName, aAddress, new BirthDate(aDay, aMonth, aYear)));
+            book.add(bb);
+            
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("book1234.txt",true))) {
+                oos.writeObject(bb);
+                oos.close();
+                JOptionPane.showMessageDialog(this, "Book saved successfully.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+            
+            setAllTextField();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
         
-        setAllTextField();
+        
+        
+        
+        
+        
+        
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        
+        String bookName = JOptionPane.showInputDialog(this, "Enter Book's Name (title)");
+        boolean isAvailable = true;
+
+        for (int i = 0; i < book.size(); i++) {
+            Book bb = book.get(i);
+            if (bb.getTitle().equals(bookName)) {
+                JOptionPane.showMessageDialog(this, "The Book is Available");
+                isAvailable = false;
+            }
+        }
+
+        if (isAvailable)
+            JOptionPane.showMessageDialog(this, "The Book is NOT Available");
+            
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int bookId = 0;
+        boolean isAvailable = true;
+        
+        try {
+            bookId = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter Book's Id"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "enter a valid book id");
+            isAvailable = false;
+        }
+
+        for (int i = 0; i < book.size(); i++) {
+            Book b = book.get(i);
+            if (b.getId() == bookId){
+                JOptionPane.showMessageDialog(this, "The Book is Available");
+                isAvailable = false;
+            }
+        }
+        
+        if (isAvailable)
+            JOptionPane.showMessageDialog(this, "The Book is NOT Available");
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        String autherName = JOptionPane.showInputDialog(this, "Enter Auther's Name");
+        boolean isAvailable = true;
+        
+        for (int i = 0; i < book.size(); i++) {
+            Book b = book.get(i);
+            if (b.geta().getName().equals(autherName)){
+                JOptionPane.showMessageDialog(this, "The Book is Available");
+                isAvailable = false;
+            }
+        }
+        
+        if (isAvailable)
+            JOptionPane.showMessageDialog(this, "The Book is NOT Available");
+        
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        
+        String bookName = JOptionPane.showInputDialog(this, "Enter Book's Name (title)");
+        boolean bookExistInTheLibrary = false;
+
+        for (int i = 0; i < book.size(); i++) {
+            Book b = book.get(i);
+            if (b.getTitle().equals(bookName)) {
+                if (b.inLoan()) {
+                    JOptionPane.showMessageDialog(this, "The Book you are looking for is in loan");
+                } else {
+                    JOptionPane.showMessageDialog(this, "The Book you are looking for is not in loan and a student can barrow it");
+                }
+                bookExistInTheLibrary = true;
+            }
+        }
+
+        if (!bookExistInTheLibrary) {
+            JOptionPane.showMessageDialog(this, "The Book does not exist in the library");
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        String bookName = JOptionPane.showInputDialog(this, "Enter Book's Name (title)");
+        String studentName = JOptionPane.showInputDialog(this, "Enter Student's Name, how wants to barrow the book");
+        
+        
+        
+        for (int i = 0; i < student.size(); i++) {
+            Student s = student.get(i);
+            if (s.getName().equals(studentName)) {
+                
+
+                for (int j = 0; j < book.size(); j++) {
+                    Book b = book.get(j);
+                    if (b.getTitle().equals(bookName)) {
+                        s.barrow(b);
+                    }
+                }
+
+            }
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void issueNoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueNoTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_issueNoTextFieldActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        try {
+            String bName = bookNameTextField.getText();
+            int bId = Integer.parseInt(bookIdTextField.getText());
+            String bGenre = bookGenreTextField.getText();
+            String bVersion = bookVersionTextField.getText();
+            int bDay = Integer.parseInt(bookDayTextField.getText());
+            int bMonth = Integer.parseInt(bookMonthTextField.getText());
+            int bYear = Integer.parseInt(bookYearTextField.getText());
+
+            String aName = autherNameTextField.getText();
+            int aId = Integer.parseInt(autherIdTextField.getText());
+            String aAddress = autherAddressTextField.getText();
+            int aDay = Integer.parseInt(autherDayTextField.getText());
+            int aMonth = Integer.parseInt(autherMonthTextField.getText());
+            int aYear = Integer.parseInt(autherYearTextField.getText());
+
+            int issueNo = Integer.parseInt(issueNoTextField.getText());
+            int mDay = Integer.parseInt(magazineDayTextField.getText());
+            int mMonth = Integer.parseInt(magazineMonthTextField.getText());
+            int mYear = Integer.parseInt(magazineYearTextField.getText());
+
+            Magazine mm = new Magazine(bName, bId, bGenre, bVersion, new BirthDate(bDay, bMonth, bYear), new Auther(aId, aName, aAddress, new BirthDate(aDay, aMonth, aYear)), issueNo, new BirthDate(mDay, mMonth, mYear));
+            book.add(mm);
+
+            setAllTextField();
+
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("book1234.txt",true))) {
+                oos.writeObject(mm);
+                oos.close();
+                JOptionPane.showMessageDialog(this, "Magazine saved successfully.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void conferenceNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conferenceNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_conferenceNameTextFieldActionPerformed
+
+    private void conferenceNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conferenceNumberTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_conferenceNumberTextFieldActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        try {
+            String bName = bookNameTextField.getText();
+            int bId = Integer.parseInt(bookIdTextField.getText());
+            String bGenre = bookGenreTextField.getText();
+            String bVersion = bookVersionTextField.getText();
+            int bDay = Integer.parseInt(bookDayTextField.getText());
+            int bMonth = Integer.parseInt(bookMonthTextField.getText());
+            int bYear = Integer.parseInt(bookYearTextField.getText());
+
+            String aName = autherNameTextField.getText();
+            int aId = Integer.parseInt(autherIdTextField.getText());
+            String aAddress = autherAddressTextField.getText();
+            int aDay = Integer.parseInt(autherDayTextField.getText());
+            int aMonth = Integer.parseInt(autherMonthTextField.getText());
+            int aYear = Integer.parseInt(autherYearTextField.getText());
+
+            String conferenceName = conferenceNameTextField.getText();
+            int conferenceNumber = Integer.parseInt(conferenceNumberTextField.getText());
+            
+            
+            Journal jj = new Journal(bName, bId, bGenre, bVersion, new BirthDate(bDay, bMonth, bYear), new Auther(aId, aName, aAddress, new BirthDate(aDay, aMonth, aYear)), conferenceName, conferenceNumber);
+            book.add(jj);
+
+            setAllTextField();
+
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("book1234.txt",true))) {
+                oos.writeObject(jj);
+                oos.close();
+                JOptionPane.showMessageDialog(this, "Journal saved successfully.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -487,8 +1012,18 @@ public class MyFrame extends javax.swing.JFrame {
     private javax.swing.JTextField bookNameTextField;
     private javax.swing.JTextField bookVersionTextField;
     private javax.swing.JTextField bookYearTextField;
+    private javax.swing.JTextField conferenceNameTextField;
+    private javax.swing.JTextField conferenceNumberTextField;
+    private javax.swing.JTextField issueNoTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -505,7 +1040,16 @@ public class MyFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -513,6 +1057,13 @@ public class MyFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JTextField magazineDayTextField;
+    private javax.swing.JTextField magazineMonthTextField;
+    private javax.swing.JTextField magazineYearTextField;
     private javax.swing.JTextField studentAddressTextField;
     private javax.swing.JTextField studentDayTextField;
     private javax.swing.JTextField studentIdTextField;

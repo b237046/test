@@ -8,8 +8,11 @@ package myproject.libraryapp;
  *
  * @author hehe he
  */
+
+import java.io.Serializable;
 import java.time.LocalDate;
-public class Student extends Auther{
+import javax.swing.JOptionPane;
+public class Student extends Auther implements Serializable{
     
     private String major;
     private int barrowCount;
@@ -44,17 +47,17 @@ public class Student extends Auther{
     
     
     
-    public void barrow(Book b){
+    public void barrow(Book b){      
         if (barrowCount < 3 && !b.inLoan()){
             LocalDate date = LocalDate.now();
             
-            System.out.print("you should return the book in " + date.plusDays(5) + "\n\n");
+            JOptionPane.showMessageDialog(null,"no problems put you should return the book in " + date.plusDays(5));
             
             b.setIsLoan(true);
             barrowCount++;
         }
-        else if (barrowCount >= 3) System.out.println("you can not barrow more than 3 books\n\n");
-        else if (b.inLoan()) System.out.println("you can not barrow a book that has already been barrowed\n\n");
+        else if (barrowCount >= 3) JOptionPane.showMessageDialog(null, "you can not barrow more than 3 books");
+        else if (b.inLoan()) JOptionPane.showMessageDialog(null,"you can not barrow a book that has already been barrowed");
     }
     
     

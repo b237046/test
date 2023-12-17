@@ -4,14 +4,16 @@
  */
 package myproject.libraryapp;
 
+import java.io.Serializable;
+
 /**
  *
  * @author hehe he
  */
 
-public class Auther {
+public class Auther implements Serializable {
     
-     private int id;
+    private int id;
     private String name;
     private String address;
     private BirthDate bd;

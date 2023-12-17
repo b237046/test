@@ -4,32 +4,25 @@
  */
 package myproject.libraryapp;
 
+import java.io.Serializable;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hehe he
  */
-public class BirthDate {
+public class BirthDate implements Serializable {
     
     private int day;
     private int month;
     private int year;
-
+    
     public BirthDate(int day, int month, int year) {
+
+        setDay(day);
+        setMonth(month);
+        setYear(year);
         
-        int temp = year;
-        int count = 0;
-        while (Math.abs(temp) != 0){
-            count++;
-            temp = temp / 10;
-        }
-        
-        if (day >= 1 && day <= 31 && month >= 1 && month <= 12 && count == 4 && year > 0){
-            this.day = day;
-            this.month = month;
-            this.year = year;
-        }
-        
-        else System.out.println("The Date is invaled !!!");
     }
 
     public int getDay() {
@@ -37,9 +30,14 @@ public class BirthDate {
     }
 
     public void setDay(int day) {
-        if (day >= 1 && day <= 31)
-            this.day = day;
-        else System.out.println("The day is invaled !!!");
+        while (day <= 0 || day > 31) {
+            JOptionPane.showMessageDialog(null, "Invalid day! Please enter a day between 1 and 31.");
+            String input = JOptionPane.showInputDialog("Enter day:");
+            day = Integer.parseInt(input);
+        }
+
+        this.day = day;
+        
     }
 
     public int getMonth() {
@@ -47,9 +45,16 @@ public class BirthDate {
     }
 
     public void setMonth(int month) {
-        if (month >= 1 && month <= 12)
-            this.month = month;
-        else System.out.println("The month is invaled !!!");
+        
+        while (month < 1 || month > 12) {
+            JOptionPane.showMessageDialog(null, "Invalid month! Please enter a month between 1 and 12.");
+            String input = JOptionPane.showInputDialog("Enter month:");
+            month = Integer.parseInt(input);
+        }
+
+        this.month = month;
+        
+         
     }
 
     public int getYear() {
@@ -60,16 +65,25 @@ public class BirthDate {
         
         int temp = year;
         int count = 0;
-        while (Math.abs(temp) != 0){
+        while (Math.abs(temp) != 0) {
             count++;
             temp = temp / 10;
         }
-        if (count == 4 && year > 0){
-            this.year = year;
+        while (count != 4 || year < 0 || year > 2024) {
+            JOptionPane.showMessageDialog(null, "Invalid year! Please enter a valid one");
+            String input = JOptionPane.showInputDialog("Enter year:");
+            year = Integer.parseInt(input);
+
+            temp = year;
+            count = 0;
+            while (Math.abs(temp) != 0) {
+                count++;
+                temp = temp / 10;
+            }
+
         }
-        else System.out.println("The year is invaled !!!");
-        
-        
+
+        this.year = year; 
     }
     
     
