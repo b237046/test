@@ -4,7 +4,7 @@
  */
 package myproject.libraryapp;
 
-import java.io.*;
+import java.io.Serializable;
 
 /**
  *
@@ -21,6 +21,10 @@ public class Book implements Contract, Serializable {
     private Auther a;
     private boolean isLoan;
 
+    public Book() {
+    }
+    
+    
     public Book(String title, int id, String genre, String version, BirthDate bd, Auther a) {
         this.title = title;
         this.id = id;

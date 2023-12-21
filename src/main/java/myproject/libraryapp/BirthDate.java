@@ -16,6 +16,11 @@ public class BirthDate implements Serializable {
     private int day;
     private int month;
     private int year;
+
+    public BirthDate() {
+    }
+    
+    
     
     public BirthDate(int day, int month, int year) {
 

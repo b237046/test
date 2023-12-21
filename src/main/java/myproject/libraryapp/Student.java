@@ -12,6 +12,8 @@ package myproject.libraryapp;
 import java.io.Serializable;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
+
+
 public class Student extends Auther implements Serializable{
     
     private String major;
@@ -51,7 +53,7 @@ public class Student extends Auther implements Serializable{
         if (barrowCount < 3 && !b.inLoan()){
             LocalDate date = LocalDate.now();
             
-            JOptionPane.showMessageDialog(null,"no problems put you should return the book in " + date.plusDays(5));
+            JOptionPane.showMessageDialog(null,"no problems appeared, put make sure to return it in " + date.plusDays(5));
             
             b.setIsLoan(true);
             barrowCount++;

@@ -4,6 +4,9 @@
  */
 package myproject.libraryapp;
 
+import java.awt.HeadlessException;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.io.*;
@@ -15,26 +18,158 @@ import java.io.*;
 public class MyFrame extends javax.swing.JFrame {
     ArrayList <Book> book = new ArrayList<Book>();
     ArrayList <Student> student = new ArrayList<Student>();
+    int booksAdded = 0 , studentsAdded = 0;
+    
+    private ArrayList<Book> loadBooksFromFile() {
+        ArrayList <Book> list = new ArrayList<Book>();
+        
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        
+        
+        try {
+            fis = new FileInputStream("book1234.txt");
+            ois = new ObjectInputStream(fis);
+            
+            while(true){
+                try {
+                    Book b = (Book) ois.readObject();
+                    list.add((Book) b);
+                    
+                    
+                } catch (EOFException e){
+                    break;
+                }
+            }
+
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        
+        finally {
+            if (fis != null){
+                try {
+                    fis.close();
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage() + "D");
+                }
+            }
+        }
+
+        return list;
+    }
     
     
-//    private ArrayList<Book> loadListFromFile() {
-//        ObjectInputStream ois = null;
-//        try {
-//            
-//            ois = new ObjectInputStream(new FileInputStream("book123.txt"));
-//            ArrayList<Book> loadedbooks = (ArrayList<Book>) ois.readObject();
-//            ArrayList<Book> booooks = new ArrayList<Book>();
-//            booooks.addAll(loadedbooks);
-//            JOptionPane.showMessageDialog(this,"Objects loaded from file successfully");
-//            return booooks;
-//            
-//        } catch (IOException | ClassNotFoundException e) {
-//            
-//            JOptionPane.showMessageDialog(this, "Whattttt " + e.getMessage());
-//            return null;
-//        }
-//        
-//    }
+    
+    private ArrayList<Student> loadStudentsFromFile() {
+        ArrayList <Student> list = new ArrayList<Student>();
+        
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        
+        
+        try {
+            fis = new FileInputStream("student1234.txt");
+            ois = new ObjectInputStream(fis);
+            
+            
+            
+            while(true){
+                try {
+                    Student s = (Student) ois.readObject();
+                    list.add((Student) s);
+                    
+                    
+                } catch (EOFException e){
+                    break;
+                }
+            }
+
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        
+        finally {
+            if (fis != null){
+                try {
+                    fis.close();
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage() + "D");
+                }
+            }
+        }
+
+        return list;
+    }
+    
+    
+    private void saveBooksToFile() {
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        try {
+            fos = new FileOutputStream("book1234.txt");
+            oos = new ObjectOutputStream(fos);
+            for (Book b : book) {
+                oos.writeObject(b);  
+            }
+            JOptionPane.showMessageDialog(this, "All new Books saved into file successfully");
+
+
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        } finally {
+            if (fos != null) {
+
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage());
+
+                }
+            }
+        }
+    }
+    
+    private void saveStudentsToFile() {
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        try {
+            fos = new FileOutputStream("student1234.txt");
+            oos = new ObjectOutputStream(fos);
+            for (Student s : student) {
+                oos.writeObject(s);  
+            }
+            JOptionPane.showMessageDialog(this, "All new Students saved into file successfully");
+                    
+
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        } finally {
+            if (fos != null) {
+
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage());
+
+                }
+            }
+        }
+    }
+    
+    
     
     
     
@@ -43,6 +178,21 @@ public class MyFrame extends javax.swing.JFrame {
      */
     public MyFrame() {
         initComponents();
+        book = loadBooksFromFile();
+        student = loadStudentsFromFile();
+        
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (booksAdded != 0)
+                    saveBooksToFile();
+                if (studentsAdded != 0)
+                    saveStudentsToFile();
+                dispose();
+            }
+        });
+        
     }
     
     /**
@@ -126,6 +276,7 @@ public class MyFrame extends javax.swing.JFrame {
         conferenceNumberTextField = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registration System");
@@ -281,6 +432,13 @@ public class MyFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton10.setText("A Student want to return a Book");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -407,28 +565,8 @@ public class MyFrame extends javax.swing.JFrame {
                                         .addGap(45, 45, 45))))))
                     .addComponent(jSeparator2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator3)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator5)
                         .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jSeparator6)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -463,17 +601,37 @@ public class MyFrame extends javax.swing.JFrame {
                         .addComponent(jLabel24)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(conferenceNameTextField))
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(conferenceNumberTextField))
-                .addGap(117, 117, 117)
-                .addComponent(jButton9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator6)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(conferenceNameTextField))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(conferenceNumberTextField))
+                        .addGap(117, 117, 117)
+                        .addComponent(jButton9)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jSeparator3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton7)
+                                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(433, 433, 433)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,24 +764,26 @@ public class MyFrame extends javax.swing.JFrame {
                                 .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(studentMajorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(53, 53, 53)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7)
-                        .addGap(57, 57, 57))
+                        .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(717, 717, 717))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6)
+                .addGap(12, 12, 12)
+                .addComponent(jButton7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton10)
+                .addGap(49, 49, 49))
         );
 
         pack();
@@ -682,15 +842,8 @@ public class MyFrame extends javax.swing.JFrame {
             student.add(ss);
 
             setAllTextField();
-
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("student1234.txt", true))) {
-                oos.writeObject(ss);
-                oos.close();
-                JOptionPane.showMessageDialog(this, "Student saved successfully.");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage());
-            }
-
+            studentsAdded++;
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -720,73 +873,55 @@ public class MyFrame extends javax.swing.JFrame {
             Book bb = new Book(bName, bId, bGenre, bVersion, new BirthDate(bDay, bMonth, bYear), new Auther(aId, aName, aAddress, new BirthDate(aDay, aMonth, aYear)));
             book.add(bb);
             
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("book1234.txt",true))) {
-                oos.writeObject(bb);
-                oos.close();
-                JOptionPane.showMessageDialog(this, "Book saved successfully.");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage());
-            }
-            
             setAllTextField();
+            booksAdded++;
             
-        } catch (Exception e) {
+        } catch (HeadlessException | NumberFormatException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        
-        
-        
-        
-        
-        
-        
-        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-        
-        
-        
         String bookName = JOptionPane.showInputDialog(this, "Enter Book's Name (title)");
-        boolean isAvailable = true;
+        boolean isAvailable = false;
 
         for (int i = 0; i < book.size(); i++) {
             Book bb = book.get(i);
             if (bb.getTitle().equals(bookName)) {
                 JOptionPane.showMessageDialog(this, "The Book is Available");
-                isAvailable = false;
+                isAvailable = true;
             }
         }
 
-        if (isAvailable)
+        if (!isAvailable)
             JOptionPane.showMessageDialog(this, "The Book is NOT Available");
             
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        int bookId = 0;
-        boolean isAvailable = true;
+        
+        int bookId;
+        boolean isAvailable = false;
         
         try {
             bookId = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter Book's Id"));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "enter a valid book id");
-            isAvailable = false;
+            bookId = Integer.parseInt(JOptionPane.showInputDialog(this, "enter a valid book id"));
         }
 
         for (int i = 0; i < book.size(); i++) {
             Book b = book.get(i);
             if (b.getId() == bookId){
                 JOptionPane.showMessageDialog(this, "The Book is Available");
-                isAvailable = false;
+                isAvailable = true;
             }
         }
         
-        if (isAvailable)
+        if (!isAvailable)
             JOptionPane.showMessageDialog(this, "The Book is NOT Available");
         
         
@@ -797,17 +932,17 @@ public class MyFrame extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         String autherName = JOptionPane.showInputDialog(this, "Enter Auther's Name");
-        boolean isAvailable = true;
+        boolean isAvailable = false;
         
         for (int i = 0; i < book.size(); i++) {
             Book b = book.get(i);
             if (b.geta().getName().equals(autherName)){
                 JOptionPane.showMessageDialog(this, "The Book is Available");
-                isAvailable = false;
+                isAvailable = true;
             }
         }
         
-        if (isAvailable)
+        if (!isAvailable)
             JOptionPane.showMessageDialog(this, "The Book is NOT Available");
         
         
@@ -816,9 +951,9 @@ public class MyFrame extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         
-        String bookName = JOptionPane.showInputDialog(this, "Enter Book's Name (title)");
+        String bookName = JOptionPane.showInputDialog(this, "Enter The Book's Name (title)");
         boolean bookExistInTheLibrary = false;
-
+        
         for (int i = 0; i < book.size(); i++) {
             Book b = book.get(i);
             if (b.getTitle().equals(bookName)) {
@@ -830,7 +965,7 @@ public class MyFrame extends javax.swing.JFrame {
                 bookExistInTheLibrary = true;
             }
         }
-
+        
         if (!bookExistInTheLibrary) {
             JOptionPane.showMessageDialog(this, "The Book does not exist in the library");
         }
@@ -841,25 +976,36 @@ public class MyFrame extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        String bookName = JOptionPane.showInputDialog(this, "Enter Book's Name (title)");
+        
+        boolean studentExist = false;
+        boolean bookExist = false;
+        
         String studentName = JOptionPane.showInputDialog(this, "Enter Student's Name, how wants to barrow the book");
-        
-        
-        
         for (int i = 0; i < student.size(); i++) {
             Student s = student.get(i);
             if (s.getName().equals(studentName)) {
+                studentExist = true;
                 
-
+                String bookName = JOptionPane.showInputDialog(this, "Enter Book's Name (title)");
                 for (int j = 0; j < book.size(); j++) {
                     Book b = book.get(j);
                     if (b.getTitle().equals(bookName)) {
+                        bookExist = true;
+                        
                         s.barrow(b);
                     }
                 }
-
             }
         }
+        
+        if (!studentExist)
+            JOptionPane.showMessageDialog(this, "the student does not exist in the library database!!!");
+        
+        if (studentExist && !bookExist)
+            JOptionPane.showMessageDialog(this, "the book does not exist in the library database!!!");
+        
+        
+        
         
         
         
@@ -896,22 +1042,11 @@ public class MyFrame extends javax.swing.JFrame {
             book.add(mm);
 
             setAllTextField();
+            booksAdded++;
 
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("book1234.txt",true))) {
-                oos.writeObject(mm);
-                oos.close();
-                JOptionPane.showMessageDialog(this, "Magazine saved successfully.");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage());
-            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        
-        
-        
-        
-        
         
         
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -950,18 +1085,54 @@ public class MyFrame extends javax.swing.JFrame {
             book.add(jj);
 
             setAllTextField();
-
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("book1234.txt",true))) {
-                oos.writeObject(jj);
-                oos.close();
-                JOptionPane.showMessageDialog(this, "Journal saved successfully.");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage());
-            }
+            booksAdded++;
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        
+        boolean studentExist = false;
+        boolean bookExist = false;
+        
+        String studentName = JOptionPane.showInputDialog(this, "Enter Student's Name, how wants to return the book");
+        for (int i = 0; i < student.size(); i++) {
+            Student s = student.get(i);
+            if (s.getName().equals(studentName)) {
+                studentExist = true;
+                
+                String bookName = JOptionPane.showInputDialog(this, "Enter Book's Name (title)");
+                for (int j = 0; j < book.size(); j++) {
+                    Book b = book.get(j);
+                    if (b.getTitle().equals(bookName) && b.inLoan()) {
+                        bookExist = true;
+                        
+                        
+                        b.setIsLoan(false);
+                        s.setBarrowCount(s.getBarrowCount() - 1);
+                        JOptionPane.showMessageDialog(this, "Thank you for returning the book " + s.getName());
+                    }
+                }
+            }
+        }
+        
+        if (!studentExist)
+            JOptionPane.showMessageDialog(this, "can not find the student!!!\nyou may write it's name wrong");
+        
+        if (studentExist && !bookExist)
+            JOptionPane.showMessageDialog(this, "can not find the book!!!\nyou may write it's title wrong");
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1016,6 +1187,7 @@ public class MyFrame extends javax.swing.JFrame {
     private javax.swing.JTextField conferenceNumberTextField;
     private javax.swing.JTextField issueNoTextField;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
