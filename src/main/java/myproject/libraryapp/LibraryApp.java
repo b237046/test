@@ -15,33 +15,33 @@ import java.util.Scanner;
 public class LibraryApp {
     
      private static Book searchBookByName(ArrayList<Book> books, String name) {
-        for (Book book : books) {
-            if (book.getTitle().equals(name)) {
-                return book;
+        for (Book b : books) {
+            if (b.getTitle().equals(name)) {
+                return b;
             }
         }
         return null;}
      
      private static Book searchBookByAutherName(ArrayList<Book> books, String auther) {
-        for (Book book : books) {
-            if (book.geta().getName().equals(auther)) {
-                return book;
+        for (Book b : books) {
+            if (b.geta().getName().equals(auther)) {
+                return b;
             }
         }
         return null;}
         
      private static Book searchBookById(ArrayList<Book> books, int id) {
-        for (Book book : books) {
-            if (book.getId() == id) {
-                return book;
+        for (Book b : books) {
+            if (b.getId() == id) {
+                return b;
             }
         }
         return null;}
      
      private static Student searchStudentByName(ArrayList<Student> students, String name) {
-        for (Student student : students) {
-            if (student.getName().equals(name)) {
-                return student;
+        for (Student s : students) {
+            if (s.getName().equals(name)) {
+                return s;
             }
         }
         return null;}
