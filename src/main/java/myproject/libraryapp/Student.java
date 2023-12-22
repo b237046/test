@@ -53,7 +53,7 @@ public class Student extends Auther implements Serializable{
         if (barrowCount < 3 && !b.inLoan()){
             LocalDate date = LocalDate.now();
             
-            JOptionPane.showMessageDialog(null,"no problems appeared, put make sure to return it in " + date.plusDays(5));
+            JOptionPane.showMessageDialog(null,"no problems, put make sure to return it in " + date.plusDays(5));
             
             b.setIsLoan(true);
             barrowCount++;
